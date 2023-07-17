@@ -21,6 +21,10 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get install --yes --no-install-recommends
 	dos2unix \
 	pylint
 
+RUN locale-gen en_EN
+RUN locale-gen en_EN.UTF-8
+RUN update-locale
+
 RUN apt-get autoremove
 RUN apt-get clean
 
