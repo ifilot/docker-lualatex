@@ -9,18 +9,25 @@
 Debian environment with LuaLaTeX packages installed for compilation of LuaLaTeX
 projects.
 
+## Versions
+
+**Operating systems:**
+
+* Debian 11
+* Debian 12
+
 ## Usage
 
 Ensure a copy of the docker image is present
 
 ```bash
-docker pull ghcr.io/ifilot/lualatex:v0.1.0
+docker pull ghcr.io/ifilot/lualatex-<DIST>:<VERSION>
 ```
 
 To compile the Sphinx documentation locally, run
 
 ```bash
-docker run --volume .:/data:rw --workdir /data -it ghcr.io/ifilot/lualatex:v0.1.0 ./build_reader.sh
+docker run --volume .:/data:rw --workdir /data -it ghcr.io/ifilot/lualatex-<DIST>:<VERSION> ./build_reader.sh
 ```
 
 where `build_reader.sh` is a batch file containing the compilation instructions, e.g.
