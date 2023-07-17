@@ -37,7 +37,7 @@ WORKDIR "/data"
 # create virtual environment
 RUN python3 -m venv /data/env
 RUN /data/env/bin/python3 -m pip install \
-	qr \
+	qrcode \
 	numpy \
 	scipy \
 	matplotlib \
