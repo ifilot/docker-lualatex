@@ -21,7 +21,7 @@ jobs:
       uses: docker/metadata-action@v4
       with:
         images: |
-          ghcr.io/ifilot/lualatex-debian12
+          ghcr.io/ifilot/lualatex-debian11
 
     - name: Log in to the Container registry
       uses: docker/login-action@v2
