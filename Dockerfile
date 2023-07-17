@@ -1,4 +1,5 @@
-FROM debian:12-slim
+ARG IMAGE=debian:11-slim
+FROM $IMAGE
 
 ENV DEBIAN_FRONTEND=noninteractive
 ENV LANG C.UTF-8
