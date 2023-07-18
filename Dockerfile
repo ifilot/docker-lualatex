@@ -21,8 +21,8 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get install --yes --no-install-recommends
 	dos2unix \
 	pylint
 
-RUN locale-gen en_EN
-RUN locale-gen en_EN.UTF-8
+RUN locale-gen en_US
+RUN locale-gen en_US.UTF-8
 RUN update-locale
 
 RUN apt-get autoremove
@@ -32,8 +32,9 @@ RUN apt-get clean
 RUN useradd -ms /bin/bash lualatex
 
 # create new folder
-RUN mkdir /data
-RUN chown -R lualatex:lualatex /data
+RUN mkdir -pv /data /home/lualatex
+COPY latex /home/lualatex/latex
+RUN chown -R lualatex:lualatex /data /home/lualatex
 RUN rm /bin/sh && ln -s /bin/bash /bin/sh
 
 USER lualatex
@@ -50,3 +51,17 @@ RUN /data/env/bin/python3 -m pip install \
     pylint-report
 
 ENV PATH="/data/env/bin:$PATH"
+
+# test compilation of document
+WORKDIR "/home/lualatex/latex"
+
+ARG CI_COMMIT_SHA=2c226d3
+ARG TITLE=test
+
+RUN echo $CI_COMMIT_SHA > gitid.info
+RUN qr $CI_COMMIT_SHA > gitid.png
+RUN date +"%B %-d, %Y" > gitdate.info
+RUN latexmk -pdflatex=lualatex -pdf -jobname="$TITLE" main.tex
+
+# switch back to data workdir
+WORKDIR "/data"
