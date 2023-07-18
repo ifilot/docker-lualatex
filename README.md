@@ -13,8 +13,21 @@ projects.
 
 **Operating systems:**
 
-* Debian 11
-* Debian 12
+* Debian 11: `ghcr.io/ifilot/lualatex-debian11:v0.4.0`
+* Debian 12: `ghcr.io/ifilot/lualatex-debian12:v0.4.0`
+* Ubuntu 22.04: `ghcr.io/ifilot/lualatex-ubuntu22:v0.4.0`
+
+## Python packages
+
+The LuaLaTeX repository comes bundled with the following Python packages in a virtual environment
+
+* [Numpy](https://numpy.org/)
+* [Scipy](https://scipy.org/)
+* [Matplotlib](https://matplotlib.org/)
+* [qrcode](https://pypi.org/project/qrcode/)
+* [autopep8](https://pypi.org/project/autopep8/)
+* [pylint-report](https://pypi.org/project/pylint-report/)
+* [gitpython](https://gitpython.readthedocs.io/en/stable/)
 
 ## Usage
 
@@ -34,11 +47,6 @@ where `build_reader.sh` is a batch file containing the compilation instructions,
 
 ```bash
 #!/bin/bash
-
-# store git information
-git rev-parse --short HEAD > gitid.info
-qr `git rev-parse HEAD` > gitid.png
-date -d @`git show -s --format=%at HEAD` +"%B %-d, %Y" > gitdate.info
 
 # compile full reader
 TITLE="some-title"
