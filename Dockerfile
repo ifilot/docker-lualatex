@@ -48,7 +48,8 @@ RUN /data/env/bin/python3 -m pip install \
 	scipy \
 	matplotlib \
     autopep8 \
-    pylint-report
+    pylint-report \
+    gitpython
 
 ENV PATH="/data/env/bin:$PATH"
 
