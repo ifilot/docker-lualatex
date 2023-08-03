@@ -25,11 +25,16 @@ RUN locale-gen en_US
 RUN locale-gen en_US.UTF-8
 RUN update-locale
 
+# ensure that default "python" command still works
+RUN apt install -y python-is-python3
+
 RUN apt-get autoremove
 RUN apt-get clean
 
 # create a new user
 RUN useradd -ms /bin/bash lualatex
+RUN usermod -u 1000 lualatex
+RUN usermod -G staff lualatex
 
 # create new folder
 RUN mkdir -pv /data /home/lualatex
@@ -41,8 +46,8 @@ USER lualatex
 WORKDIR "/data"
 
 # create virtual environment
-RUN python3 -m venv /data/env
-RUN /data/env/bin/python3 -m pip install \
+RUN python3 -m venv /home/lualatex/env
+RUN /home/lualatex/env/bin/python3 -m pip install \
 	qrcode \
 	numpy \
 	scipy \
@@ -51,11 +56,12 @@ RUN /data/env/bin/python3 -m pip install \
     pylint-report \
     gitpython
 
-ENV PATH="/data/env/bin:$PATH"
+ENV PATH="/home/lualatex/env/bin:$PATH"
 
 # test compilation of document
 WORKDIR "/home/lualatex/latex"
 
+# use some bogus value for data
 ARG CI_COMMIT_SHA=2c226d3
 ARG TITLE=test
 
