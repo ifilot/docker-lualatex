@@ -13,9 +13,9 @@ projects.
 
 **Operating systems:**
 
-* Debian 11: `ghcr.io/ifilot/lualatex-debian11:v0.4.0`
-* Debian 12: `ghcr.io/ifilot/lualatex-debian12:v0.4.0`
-* Ubuntu 22.04: `ghcr.io/ifilot/lualatex-ubuntu22:v0.4.0`
+* Debian 11: `ghcr.io/ifilot/lualatex-debian11:v0.5.0`
+* Debian 12: `ghcr.io/ifilot/lualatex-debian12:v0.5.0`
+* Ubuntu 22.04: `ghcr.io/ifilot/lualatex-ubuntu22:v0.5.0`
 
 ## Python packages
 
@@ -28,6 +28,14 @@ The LuaLaTeX repository comes bundled with the following Python packages in a vi
 * [autopep8](https://pypi.org/project/autopep8/)
 * [pylint-report](https://pypi.org/project/pylint-report/)
 * [gitpython](https://gitpython.readthedocs.io/en/stable/)
+
+## Compilation
+
+To produce a local Docker image with the tag `lualatex`, run
+
+```bash
+docker build . -t lualatex
+```
 
 ## Usage
 
@@ -50,8 +58,5 @@ where `build_reader.sh` is a batch file containing the compilation instructions,
 
 # compile full reader
 TITLE="some-title"
-latexmk -pdflatex=lualatex -pdf -jobname="$TITLE" main.tex
-biber $TITLE.bcf
-latexmk -pdflatex=lualatex -pdf -jobname="$TITLE" main.tex
 latexmk -pdflatex=lualatex -pdf -jobname="$TITLE" main.tex
 ```
