@@ -1,4 +1,4 @@
-ARG IMAGE=debian:11-slim
+ARG IMAGE=debian:12-slim
 FROM $IMAGE
 
 ENV DEBIAN_FRONTEND=noninteractive
@@ -38,7 +38,7 @@ RUN usermod -G staff lualatex
 
 # create new folder
 RUN mkdir -pv /data /home/lualatex
-COPY latex /home/lualatex/latex
+ADD latex /home/lualatex/latex
 RUN chown -R lualatex:lualatex /data /home/lualatex
 RUN rm /bin/sh && ln -s /bin/bash /bin/sh
 
@@ -47,7 +47,7 @@ WORKDIR "/data"
 
 # create virtual environment
 RUN python3 -m venv /home/lualatex/env
-RUN /home/lualatex/env/bin/python3 -m pip install \
+RUN /home/lualatex/env/bin/python -m pip install \
 	qrcode \
 	numpy \
 	scipy \
