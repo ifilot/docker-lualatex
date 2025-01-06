@@ -13,9 +13,9 @@ projects.
 
 **Operating systems:**
 
-* Debian 11: `ghcr.io/ifilot/lualatex-debian11:v0.5.0`
-* Debian 12: `ghcr.io/ifilot/lualatex-debian12:v0.5.0`
-* Ubuntu 22.04: `ghcr.io/ifilot/lualatex-ubuntu22:v0.5.0`
+* Debian 11: `ghcr.io/ifilot/lualatex-debian11:v0.6.0`
+* Debian 12: `ghcr.io/ifilot/lualatex-debian12:v0.6.0`
+* Ubuntu 22.04: `ghcr.io/ifilot/lualatex-ubuntu22:v0.6.0`
 
 ## Python packages
 
